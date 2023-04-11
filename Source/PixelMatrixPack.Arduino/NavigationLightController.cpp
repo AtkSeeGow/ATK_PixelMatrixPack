@@ -22,7 +22,7 @@ void NavigationLightController::Execution() {
   else
     brightness--;
 
-  if(brightness == 250)
+  if(brightness == 200)
     breathMode = false;
   
   if(brightness == 5)
