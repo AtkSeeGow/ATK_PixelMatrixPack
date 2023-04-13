@@ -11,7 +11,7 @@ void setup() {
   M5.Axp.ScreenBreath(0);
   M5.Axp.ScreenSwitch(false);
   WiFi.mode(WIFI_OFF);
-  setCpuFrequencyMhz(5);
+  setCpuFrequencyMhz(60);
   Serial.begin(9600);
 }
 
