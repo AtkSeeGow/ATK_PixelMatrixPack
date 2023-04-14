@@ -1,24 +1,24 @@
 #include <M5StickCPlus.h>
+#include <WiFi.h>
 #include "LightsMatrixController.h"
 #include "WarningLightController.h"
+#include "SpeakerController.h"
 
-LightsMatrixController lightsMatrixController(25, 0, 26, 2);
-WarningLightController warningLightController;
+LightsMatrixController lightsMatrixController = LightsMatrixController(25, 0, 26, 2);
+WarningLightController warningLightController = WarningLightController();
+SpeakerController speakerController = SpeakerController();
 
 void setup() {
-  M5.begin(false, false , false);
-  Serial.begin(9600);
+  M5.begin();
+  M5.Axp.ScreenBreath(0);
+  M5.Axp.ScreenSwitch(false);
+  WiFi.disconnect(true);
+  setCpuFrequencyMhz(10);
 }
 
-unsigned long lastLoopTime;
 void loop() {
   M5.update();
   lightsMatrixController.Execution();
   warningLightController.Execution();
-
-  unsigned long now = millis();
-  if (now - lastLoopTime > 250) {
-    lastLoopTime = now;
-    Serial.printf("%.3fma\r\n", M5.Axp.GetVBusCurrent());
-  }
+  speakerController.Execution();
 }
