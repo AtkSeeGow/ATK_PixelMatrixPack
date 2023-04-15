@@ -9,7 +9,7 @@ WarningLightController warningLightController = WarningLightController();
 SpeakerController speakerController = SpeakerController();
 
 void setup() {
-  M5.begin();
+  M5.begin(false, true, true);
   M5.Axp.ScreenBreath(0);
   M5.Axp.ScreenSwitch(false);
   WiFi.disconnect(true);

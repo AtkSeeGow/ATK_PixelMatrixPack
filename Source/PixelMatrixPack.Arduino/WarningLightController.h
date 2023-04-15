@@ -14,14 +14,13 @@ public:
 private:
   int mode = 0;
 
-  unsigned long lastExecutionTime;
   int currentBrightness = 100;
 
   bool brightnessDirection = true;
-  int breathFrequency = 10;
+  unsigned long lastBreathingLightExecutionTime;
   void breathingLightMode();
 
-  int navigationFrequency = 1000;
+  unsigned long lastNavigationLightExecutionTime;
   void navigationLightMode();
 };
 

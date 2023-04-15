@@ -24,10 +24,8 @@ void WarningLightController::Execution() {
 
 void WarningLightController::breathingLightMode() {
   unsigned long now = millis();
-  if (now - this->lastExecutionTime > this->breathFrequency) {
-    this->lastExecutionTime = now;
-
-    analogWrite(M5_LED, currentBrightness);
+  if (now - this->lastBreathingLightExecutionTime > 10) {
+    this->lastBreathingLightExecutionTime = now;
 
     if (brightnessDirection)
       currentBrightness++;
@@ -40,16 +38,18 @@ void WarningLightController::breathingLightMode() {
     if (currentBrightness == 50)
       brightnessDirection = true;
   }
+
+  analogWrite(M5_LED, currentBrightness);
 }
 
 void WarningLightController::navigationLightMode() {
   unsigned long now = millis();
-  if (now - this->lastExecutionTime > this->navigationFrequency) {
-    this->lastExecutionTime = now;
-    analogWrite(M5_LED, currentBrightness);
+  if (now - this->lastNavigationLightExecutionTime > 1000) {
+    this->lastNavigationLightExecutionTime = now;
     if (currentBrightness == 255)
       currentBrightness = 50;
     else
       currentBrightness = 255;
   }
+  analogWrite(M5_LED, currentBrightness);
 }

@@ -12,6 +12,12 @@ public:
   void Execution();
 private:
   int mode = 0;
+  
+  int sirenFrequencyType = 0;
+  int lastSirenFrequencyType = 0;
+  int sirenFrequency = 1000;
+  unsigned long lastSirenExecutionTime;
+  void siren();
 };
 
 #endif
